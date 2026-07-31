@@ -123,7 +123,11 @@ curl http://localhost:8080/api/flats/1/history
 
 ## Настройки
 
-Переопределяются переменными окружения:
+Значения складываются из нескольких источников, каждый следующий перекрывает предыдущие:
+
+1. `appsettings.json` - базовые значения, они же в колонке "По умолчанию" ниже.
+2. `appsettings.Development.json` - только при `ASPNETCORE_ENVIRONMENT=Development`.
+3. переменные окружения.
 
 | Переменная                       | По умолчанию                        | Описание                                    |
 |----------------------------------|-------------------------------------|---------------------------------------------|
@@ -140,8 +144,16 @@ curl http://localhost:8080/api/flats/1/history
 | `Email__Smtp__Password`          | -                                   | Пароль SMTP                                 |
 
 Провайдер `log` - режим по умолчанию: сервис полностью работоспособен без настройки почты,
-письма пишутся в лог приложения и в журнал `GET /api/notifications`. В Compose включён `smtp`
-с отправкой в Mailpit.
+письма пишутся в лог приложения и в журнал `GET /api/notifications`.
+
+| Запуск              | Окружение     | Итоговые значения                                             |
+|---------------------|---------------|---------------------------------------------------------------|
+| `docker compose up` | `Production`  | `appsettings.json` + `environment` из `docker-compose.yml`    |
+| `dotnet run`        | `Development` | `appsettings.json` + `appsettings.Development.json`           |
+
+`docker-compose.yml` включает почту `smtp` с отправкой в Mailpit (`mailpit:1025`) и сокращает период
+обхода до 5 минут. `ASPNETCORE_ENVIRONMENT` там не задан, поэтому окружение - `Production`,
+и `appsettings.Development.json` в контейнере не читается, хотя в образ и попадает.
 
 ## Тесты
 
