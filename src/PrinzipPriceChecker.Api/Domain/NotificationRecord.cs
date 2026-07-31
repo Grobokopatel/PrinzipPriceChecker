@@ -1,8 +1,8 @@
 namespace PrinzipPriceChecker.Api.Domain;
 
 /// <summary>
-/// Журнал отправленных уведомлений. Нужен и для истории, и для тестов:
-/// через GET /api/notifications видно, какие письма ушли и с каким результатом.
+/// Журнал отправленных на почту уведомлений. Нужен и для истории, и для тестов.
+/// Через GET /api/notifications видно, какие письма ушли и с каким результатом.
 /// </summary>
 public class NotificationRecord
 {

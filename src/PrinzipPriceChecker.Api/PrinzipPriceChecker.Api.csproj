@@ -9,8 +9,12 @@
     <RootNamespace>PrinzipPriceChecker.Api</RootNamespace>
     <!-- XML-комментарии к действиям контроллеров попадают в Swagger. -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <!-- CS1591: не требуем XML-комментарий у каждого публичного члена. -->
-    <NoWarn>$(NoWarn);1591</NoWarn>
+    <!--
+      CS1591: не требуем XML-комментарий у каждого публичного члена.
+      CS1573: разрешаем описать только значимые параметры, не описывая
+      служебные вроде CancellationToken, который приходит не из запроса.
+    -->
+    <NoWarn>$(NoWarn);1591;1573</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
