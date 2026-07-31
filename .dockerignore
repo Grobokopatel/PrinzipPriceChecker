@@ -1,0 +1,14 @@
+**/bin/
+**/obj/
+**/TestResults/
+**/data/
+.git/
+.gitignore
+.idea/
+.vs/
+tests/
+README.md
+docker-compose.yml
+Dockerfile
+.dockerignore
+dotnet-tools.json

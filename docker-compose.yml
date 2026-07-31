@@ -1,0 +1,32 @@
+services:
+  api:
+    build: .
+    container_name: pricechecker-api
+    ports:
+      - "8080:8080"
+    environment:
+      # Письма уходят на локальный Mailpit — их видно в веб-интерфейсе на http://localhost:8025
+      Email__Provider: smtp
+      Email__Smtp__Host: mailpit
+      Email__Smtp__Port: "1025"
+      Email__FromAddress: noreply@pricechecker.local
+      # Как часто фоновая служба обходит все отслеживаемые квартиры.
+      Monitoring__Enabled: "true"
+      Monitoring__Interval: "00:05:00"
+      Monitoring__StartupDelay: "00:00:10"
+    volumes:
+      - pricechecker-data:/app/data
+    depends_on:
+      - mailpit
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:v1.27
+    container_name: pricechecker-mailpit
+    ports:
+      - "8025:8025" # веб-интерфейс со входящими письмами
+      - "1025:1025" # SMTP
+    restart: unless-stopped
+
+volumes:
+  pricechecker-data:
