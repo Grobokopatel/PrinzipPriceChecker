@@ -9,7 +9,7 @@
 - EF Core 10 + SQLite (миграции применяются при старте)
 - MailKit для отправки писем по SMTP
 - Swagger UI для ручной проверки (описания операций - из XML-комментариев)
-- NUnit 4 - модульные тесты
+- NUnit 4 - модульные и интеграционные тесты
 - Запуск через Docker Compose (в комплекте Mailpit для просмотра писем)
 
 ## Быстрый старт
@@ -167,8 +167,7 @@ dotnet test tests/PrinzipPriceChecker.Tests/PrinzipPriceChecker.Tests.csproj
 dotnet run --project src/PrinzipPriceChecker.Api
 ```
 
-Сервис поднимется на порту из `launchSettings`/`ASPNETCORE_URLS`, база создастся в
-`src/PrinzipPriceChecker.Api/data/pricechecker.db`.
+База создастся в `src/PrinzipPriceChecker.Api/data/pricechecker.db`.
 
 ## Структура
 
