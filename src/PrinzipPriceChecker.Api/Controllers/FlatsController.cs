@@ -15,7 +15,7 @@ public class FlatsController(
     PriceMonitor monitor,
     ManualPriceService manualPrice) : ControllerBase
 {
-    /// <summary>Актуальные цены квартир, на которые оформлены подписки, и ссылки на них.</summary>
+    /// <summary>Цены квартир, на которые оформлены подписки, и ссылки на них.</summary>
     /// <remarks>
     /// Возвращает последние известные сервису цены.
     /// </remarks>
