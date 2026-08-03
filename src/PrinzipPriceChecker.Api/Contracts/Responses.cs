@@ -77,6 +77,8 @@ public record NotificationResponse(
 
 /// <summary>Результат проверки цены квартиры.</summary>
 public record FlatCheckResponse(
+    int FlatId,
+    string Url,
     long? OldPrice,
     long? NewPrice,
     bool PriceChanged,
@@ -84,6 +86,8 @@ public record FlatCheckResponse(
     string? Error)
 {
     public static FlatCheckResponse From(FlatCheckResult result) => new(
+        result.FlatId,
+        result.Url,
         result.OldPrice,
         result.NewPrice,
         result.PriceChanged,
